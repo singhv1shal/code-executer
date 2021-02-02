@@ -24,10 +24,14 @@ class Language(ChoiceEnum):
     PYTHON3 = 'PYTHON3'
     PYTHON2 = 'PYTHON2'
 
+class TestCase(models.Model):
+    input_text = models.TextField(default="")
+
 class Submission(models.Model):
     submitter = models.CharField(max_length = 50, null=True,blank=True)
     status = models.CharField(max_length = 10, default = "NT", choices = SubmissionStatus.choices())
     language = models.CharField(max_length = 10, default = "C", choices = Language.choices())
     code = models.TextField(default="")
+    output = models.TextField(default="")
     created = models.DateTimeField(auto_now_add=True)
     private = models.BooleanField(default = True)
